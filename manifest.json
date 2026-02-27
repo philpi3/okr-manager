@@ -1,0 +1,10 @@
+{
+  "id": "okr-manager",
+  "name": "OKR Manager",
+  "version": "1.0.0",
+  "minAppVersion": "1.0.0",
+  "description": "Track Objectives and Key Results across yearly, quarterly, and monthly cycles — with a full-width overview board, sidebar dashboard, check-ins, and progress tracking.",
+  "author": "Phil",
+  "authorUrl": "https://github.com/philpi3",
+  "isDesktopOnly": false
+}

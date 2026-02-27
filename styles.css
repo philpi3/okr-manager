@@ -1,0 +1,650 @@
+/* OKR Dashboard Layout */
+.okr-dashboard {
+  padding: 16px;
+  overflow-y: auto;
+  height: 100%;
+}
+
+.okr-dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--background-modifier-border);
+}
+
+.okr-dashboard-header h2 {
+  margin: 0;
+  font-size: 1.3em;
+}
+
+.okr-header-actions {
+  display: flex;
+  gap: 8px;
+}
+
+/* Cycle groups */
+.okr-cycle-group {
+  margin-bottom: 28px;
+}
+
+.okr-cycle-header {
+  font-size: 1.1em;
+  font-weight: 700;
+  margin: 0 0 12px;
+  padding: 4px 0 8px;
+  border-bottom: 2px solid var(--interactive-accent);
+  color: var(--text-normal);
+}
+
+/* Objective card */
+.okr-objective-card {
+  background: var(--background-secondary);
+  border-radius: 8px;
+  padding: 14px 16px;
+  margin-bottom: 12px;
+  border: 1px solid var(--background-modifier-border);
+}
+
+.okr-objective-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 8px;
+  gap: 8px;
+}
+
+.okr-objective-title-area {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+  min-width: 0;
+}
+
+.okr-objective-title {
+  font-size: 1em;
+  font-weight: 600;
+  color: var(--text-normal);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.okr-objective-actions {
+  display: flex;
+  gap: 4px;
+  flex-shrink: 0;
+}
+
+/* Status badges */
+.okr-status-badge {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 10px;
+  font-size: 0.7em;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.okr-status-not-started {
+  background: var(--background-modifier-border);
+  color: var(--text-muted);
+}
+
+.okr-status-in-progress {
+  background: rgba(59, 130, 246, 0.15);
+  color: #3b82f6;
+}
+
+.okr-status-complete {
+  background: rgba(16, 185, 129, 0.15);
+  color: #10b981;
+}
+
+.okr-status-cancelled {
+  background: rgba(239, 68, 68, 0.15);
+  color: #ef4444;
+}
+
+/* Progress bars */
+.okr-progress-container {
+  margin: 8px 0;
+}
+
+.okr-progress-label {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.75em;
+  color: var(--text-muted);
+  margin-bottom: 4px;
+}
+
+.okr-progress-bar-track {
+  height: 7px;
+  background: var(--background-modifier-border);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.okr-progress-bar-fill {
+  height: 100%;
+  border-radius: 4px;
+  transition: width 0.4s ease;
+  min-width: 2px;
+}
+
+.okr-progress-low {
+  background: #ef4444;
+}
+
+.okr-progress-mid {
+  background: #f59e0b;
+}
+
+.okr-progress-high {
+  background: #10b981;
+}
+
+/* KR list */
+.okr-kr-list {
+  margin-top: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.okr-kr-row {
+  padding: 10px 12px;
+  background: var(--background-primary);
+  border-radius: 6px;
+  border: 1px solid var(--background-modifier-border);
+}
+
+.okr-kr-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 6px;
+  gap: 8px;
+}
+
+.okr-kr-title-area {
+  flex: 1;
+  min-width: 0;
+}
+
+.okr-kr-title {
+  font-weight: 500;
+  font-size: 0.88em;
+  color: var(--text-normal);
+}
+
+.okr-kr-meta {
+  font-size: 0.78em;
+  color: var(--text-muted);
+  margin-top: 1px;
+}
+
+.okr-kr-actions {
+  display: flex;
+  gap: 4px;
+  flex-shrink: 0;
+}
+
+/* Buttons */
+.okr-btn {
+  font-size: 0.75em;
+  padding: 3px 9px;
+  border-radius: 4px;
+  cursor: pointer;
+  border: 1px solid var(--background-modifier-border);
+  background: var(--background-secondary);
+  color: var(--text-normal);
+}
+
+.okr-btn:hover {
+  background: var(--background-modifier-hover);
+}
+
+.okr-add-kr {
+  margin-top: 10px;
+  width: 100%;
+  padding: 5px;
+  font-size: 0.8em;
+  cursor: pointer;
+  border: 1px dashed var(--background-modifier-border);
+  background: transparent;
+  color: var(--text-muted);
+  border-radius: 5px;
+}
+
+.okr-add-kr:hover {
+  background: var(--background-modifier-hover);
+  color: var(--text-normal);
+  border-color: var(--interactive-accent);
+}
+
+/* Empty state */
+.okr-empty-state {
+  text-align: center;
+  padding: 48px 16px;
+  color: var(--text-muted);
+}
+
+.okr-empty-state p {
+  margin-bottom: 16px;
+  font-size: 0.95em;
+}
+
+/* Modal form helpers */
+.okr-modal-description {
+  font-size: 0.85em;
+  color: var(--text-muted);
+  margin-bottom: 12px;
+}
+
+.okr-modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 16px;
+  padding-top: 12px;
+  border-top: 1px solid var(--background-modifier-border);
+}
+
+.okr-checkin-kr-info {
+  background: var(--background-secondary);
+  border-radius: 6px;
+  padding: 10px 14px;
+  margin-bottom: 16px;
+  border: 1px solid var(--background-modifier-border);
+}
+
+.okr-checkin-kr-title {
+  font-weight: 600;
+  font-size: 0.95em;
+  margin-bottom: 4px;
+}
+
+.okr-checkin-current {
+  font-size: 0.82em;
+  color: var(--text-muted);
+}
+
+/* ═══════════════════════════════════════════
+   OKR Overview (full-width main-area view)
+   ═══════════════════════════════════════════ */
+
+.okr-overview-root {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+  padding: 0;
+}
+
+/* Stats bar */
+.okr-ov-stats {
+  display: flex;
+  gap: 2px;
+  background: var(--background-secondary);
+  border-bottom: 1px solid var(--background-modifier-border);
+  padding: 10px 20px;
+  flex-shrink: 0;
+}
+
+.okr-ov-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 4px 20px;
+  border-right: 1px solid var(--background-modifier-border);
+}
+
+.okr-ov-stat:last-child {
+  border-right: none;
+}
+
+.okr-ov-stat-value {
+  font-size: 1.5em;
+  font-weight: 700;
+  color: var(--text-normal);
+  line-height: 1.2;
+}
+
+.okr-ov-stat-label {
+  font-size: 0.72em;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-top: 2px;
+}
+
+/* Toolbar */
+.okr-ov-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  border-bottom: 1px solid var(--background-modifier-border);
+  flex-shrink: 0;
+}
+
+/* Board: horizontal cycle columns */
+.okr-ov-board {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  padding: 16px 20px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  flex: 1;
+  align-items: flex-start;
+}
+
+/* Single cycle column */
+.okr-ov-column {
+  display: flex;
+  flex-direction: column;
+  min-width: 260px;
+  max-width: 320px;
+  flex: 1;
+  overflow-y: auto;
+  max-height: 100%;
+}
+
+.okr-ov-col-header {
+  font-size: 0.85em;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--interactive-accent);
+  margin-bottom: 10px;
+  padding-bottom: 6px;
+  border-bottom: 2px solid var(--interactive-accent);
+  flex-shrink: 0;
+}
+
+.okr-ov-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Individual card */
+.okr-ov-card {
+  background: var(--background-secondary);
+  border: 1px solid var(--background-modifier-border);
+  border-radius: 8px;
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  transition: border-color 0.15s ease;
+}
+
+.okr-ov-card:hover {
+  border-color: var(--interactive-accent);
+}
+
+.okr-ov-card-title {
+  font-weight: 600;
+  font-size: 0.92em;
+  color: var(--text-normal);
+  line-height: 1.3;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.okr-ov-card-owner {
+  font-size: 0.75em;
+  color: var(--text-muted);
+}
+
+/* Progress bar (card) */
+.okr-ov-progress-track {
+  height: 6px;
+  background: var(--background-modifier-border);
+  border-radius: 3px;
+  overflow: hidden;
+  margin: 2px 0;
+}
+
+.okr-ov-progress-fill {
+  height: 100%;
+  border-radius: 3px;
+  transition: width 0.4s ease;
+  min-width: 2px;
+}
+
+.okr-ov-card-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.okr-ov-card-pct {
+  font-size: 0.8em;
+  font-weight: 600;
+  color: var(--text-normal);
+}
+
+/* KR mini-list inside card */
+.okr-ov-kr-list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  border-top: 1px solid var(--background-modifier-border);
+  padding-top: 6px;
+  margin-top: 2px;
+}
+
+.okr-ov-kr-row {
+  display: grid;
+  grid-template-columns: 1fr 52px auto;
+  align-items: center;
+  gap: 6px;
+}
+
+.okr-ov-kr-title {
+  font-size: 0.75em;
+  color: var(--text-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.okr-ov-mini-track {
+  width: 48px;
+  height: 4px;
+  background: var(--background-modifier-border);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.okr-ov-mini-fill {
+  height: 100%;
+  border-radius: 2px;
+  min-width: 1px;
+}
+
+.okr-ov-kr-pct {
+  font-size: 0.72em;
+  color: var(--text-muted);
+  text-align: right;
+}
+
+/* Card action buttons */
+.okr-ov-card-actions {
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+  padding-top: 4px;
+  border-top: 1px solid var(--background-modifier-border);
+  margin-top: 2px;
+}
+
+/* Toolbar spacer + group-by toggle */
+.okr-ov-toolbar-spacer {
+  flex: 1;
+}
+
+.okr-ov-group-label {
+  font-size: 0.8em;
+  color: var(--text-muted);
+  margin-right: 6px;
+  align-self: center;
+}
+
+.okr-ov-toggle {
+  display: flex;
+  border: 1px solid var(--background-modifier-border);
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.okr-ov-toggle-btn {
+  padding: 4px 14px;
+  font-size: 0.8em;
+  cursor: pointer;
+  border: none;
+  background: transparent;
+  color: var(--text-muted);
+  border-radius: 0;
+}
+
+.okr-ov-toggle-btn:hover {
+  background: var(--background-modifier-hover);
+  color: var(--text-normal);
+}
+
+.okr-ov-toggle-btn.is-active {
+  background: var(--interactive-accent);
+  color: var(--text-on-accent);
+  font-weight: 600;
+}
+
+/* Column header with meta line */
+.okr-ov-col-header-row {
+  margin-bottom: 10px;
+  flex-shrink: 0;
+}
+
+.okr-ov-col-header {
+  font-size: 0.85em;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--interactive-accent);
+  padding-bottom: 4px;
+  border-bottom: 2px solid var(--interactive-accent);
+}
+
+.okr-ov-col-meta {
+  font-size: 0.72em;
+  color: var(--text-muted);
+  margin-top: 4px;
+}
+
+/* Badge row inside card */
+.okr-ov-card-badge-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+/* Context tag (cycle when owner-grouped; owner when cycle-grouped) */
+.okr-ov-context-tag {
+  font-size: 0.72em;
+  padding: 2px 7px;
+  border-radius: 10px;
+  background: var(--background-modifier-border);
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+/* Cycle-type filter bar */
+.okr-ov-filter-bar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 20px;
+  background: var(--background-primary);
+  border-bottom: 1px solid var(--background-modifier-border);
+  flex-shrink: 0;
+  flex-wrap: wrap;
+}
+
+.okr-ov-filter-pill {
+  padding: 3px 12px;
+  font-size: 0.78em;
+  border-radius: 12px;
+  cursor: pointer;
+  border: 1px solid var(--background-modifier-border);
+  background: transparent;
+  color: var(--text-muted);
+  transition: all 0.15s ease;
+}
+
+.okr-ov-filter-pill:hover {
+  background: var(--background-modifier-hover);
+  color: var(--text-normal);
+}
+
+.okr-ov-filter-pill.is-active {
+  background: var(--interactive-accent);
+  color: var(--text-on-accent);
+  border-color: var(--interactive-accent);
+  font-weight: 600;
+}
+
+/* Tiny type tag inside cycle column header */
+.okr-ov-col-type-tag {
+  font-size: 0.75em;
+  font-weight: 400;
+  text-transform: none;
+  letter-spacing: 0;
+  opacity: 0.65;
+}
+
+/* Cycle picker in objective modal */
+.okr-modal-section-header {
+  font-size: 0.85em;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+  margin: 16px 0 4px;
+  padding-bottom: 4px;
+  border-bottom: 1px solid var(--background-modifier-border);
+}
+
+.okr-cycle-preview-wrap {
+  padding: 6px 12px 10px;
+  font-size: 0.85em;
+  color: var(--text-muted);
+}
+
+.okr-cycle-preview-label {
+  margin-right: 4px;
+}
+
+.okr-cycle-preview-value {
+  font-weight: 600;
+  color: var(--interactive-accent);
+  font-family: var(--font-monospace);
+}
+
+/* Modal input widths */
+.okr-input-full { width: 100%; }
+.okr-input-sm   { width: 80px; }
+.okr-input-md   { width: 140px; }
+.okr-input-num  { width: 100px; }
