@@ -1,4 +1,4 @@
-import { ItemView, WorkspaceLeaf, TFile } from 'obsidian';
+import { ItemView, WorkspaceLeaf, TFile, Setting } from 'obsidian';
 import type OkrPlugin from '../main';
 import { Objective, KeyResult } from '../types';
 import { ObjectiveModal } from '../modals/objective-modal';
@@ -22,7 +22,7 @@ export class OkrDashboardView extends ItemView {
 	}
 
 	getDisplayText(): string {
-		return 'OKR Dashboard';
+		return 'OKR dashboard';
 	}
 
 	getIcon(): string {
@@ -69,17 +69,17 @@ export class OkrDashboardView extends ItemView {
 		}, 300);
 	}
 
-	async render() {
+	render() {
 		const container = this.containerEl.children[1] as HTMLElement;
 		container.empty();
 		container.addClass('okr-dashboard');
 
 		// Header
 		const header = container.createDiv({ cls: 'okr-dashboard-header' });
-		header.createEl('h2', { text: 'OKR Dashboard' });
+		new Setting(header).setName('OKR dashboard').setHeading();
 		const headerActions = header.createDiv({ cls: 'okr-header-actions' });
 		const newObjBtn = headerActions.createEl('button', {
-			text: '+ New objective',
+			text: '+ new objective',
 			cls: 'mod-cta',
 		});
 		newObjBtn.addEventListener('click', () => {
@@ -89,7 +89,7 @@ export class OkrDashboardView extends ItemView {
 		});
 
 		// Load objectives
-		const objectives = await this.plugin.manager.getAllObjectives();
+		const objectives = this.plugin.manager.getAllObjectives();
 
 		if (objectives.length === 0) {
 			const empty = container.createDiv({ cls: 'okr-empty-state' });
@@ -97,13 +97,13 @@ export class OkrDashboardView extends ItemView {
 				text: 'No OKRs yet. Create your first objective to get started!',
 			});
 			const emptyBtn = empty.createEl('button', {
-				text: '+ New objective',
+				text: '+ new objective',
 				cls: 'mod-cta',
 			});
 			emptyBtn.addEventListener('click', () => {
-				new ObjectiveModal(this.app, this.plugin, undefined, () =>
-					this.render()
-				).open();
+				new ObjectiveModal(this.app, this.plugin, undefined, () => {
+					this.render();
+				}).open();
 			});
 			return;
 		}
@@ -172,7 +172,7 @@ export class OkrDashboardView extends ItemView {
 
 		// Add KR button
 		const addKrBtn = card.createEl('button', {
-			text: '+ Add key result',
+			text: '+ add key result',
 			cls: 'okr-add-kr',
 		});
 		addKrBtn.addEventListener('click', () => {

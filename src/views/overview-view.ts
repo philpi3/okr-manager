@@ -22,7 +22,7 @@ export class OkrOverviewView extends ItemView {
 	}
 
 	getViewType(): string { return OKR_OVERVIEW_VIEW_TYPE; }
-	getDisplayText(): string { return 'OKR Overview'; }
+	getDisplayText(): string { return 'OKR overview'; }
 	getIcon(): string { return 'layout-grid'; }
 
 	async onOpen() {
@@ -48,12 +48,12 @@ export class OkrOverviewView extends ItemView {
 		this.refreshTimeout = setTimeout(() => { void this.render(); this.refreshTimeout = null; }, 300);
 	}
 
-	async render() {
+	render() {
 		const root = this.containerEl.children[1] as HTMLElement;
 		root.empty();
 		root.addClass('okr-overview-root');
 
-		const allObjectives = await this.plugin.manager.getAllObjectives();
+		const allObjectives = this.plugin.manager.getAllObjectives();
 
 		// ── Stats bar ──────────────────────────────────────────────
 		this.renderStats(root.createDiv({ cls: 'okr-ov-stats' }), allObjectives);
@@ -61,7 +61,7 @@ export class OkrOverviewView extends ItemView {
 		// ── Toolbar ────────────────────────────────────────────────
 		const toolbar = root.createDiv({ cls: 'okr-ov-toolbar' });
 
-		toolbar.createEl('button', { text: '+ New objective', cls: 'mod-cta' })
+		toolbar.createEl('button', { text: '+ new objective', cls: 'mod-cta' })
 			.addEventListener('click', () => {
 				new ObjectiveModal(this.app, this.plugin, undefined, () => { void this.render(); }).open();
 			});

@@ -5,7 +5,7 @@ import { parseCycle } from './cycle-parser';
 export class OkrManager {
 	constructor(private app: App, private settings: OkrPluginSettings) {}
 
-	async getAllObjectives(): Promise<Objective[]> {
+	getAllObjectives(): Objective[] {
 		const objectives: Objective[] = [];
 		const files = this.app.vault.getMarkdownFiles();
 
@@ -43,8 +43,8 @@ export class OkrManager {
 		}));
 	}
 
-	async getAvailableCycles(): Promise<string[]> {
-		const objectives = await this.getAllObjectives();
+	getAvailableCycles(): string[] {
+		const objectives = this.getAllObjectives();
 		const cycles = new Set(objectives.map((o) => o.cycle).filter(Boolean));
 		return Array.from(cycles).sort(
 			(a, b) => parseCycle(b).sortKey - parseCycle(a).sortKey

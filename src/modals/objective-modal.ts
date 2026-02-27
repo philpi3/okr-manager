@@ -69,7 +69,7 @@ export class ObjectiveModal extends Modal {
 			.setName('Title')
 			.setDesc('What do you want to achieve?')
 			.addText((text) => {
-				text.setPlaceholder('e.g. Grow product revenue')
+				text.setPlaceholder('e.g. grow product revenue')
 					.setValue(this.title)
 					.onChange((v) => (this.title = v));
 				text.inputEl.addClass('okr-input-full');
@@ -125,7 +125,7 @@ export class ObjectiveModal extends Modal {
 		// Custom text row
 		const customSetting = new Setting(contentEl)
 			.setName('Cycle string')
-			.setDesc('e.g. 2026-Q1, 2026-FY, Sprint-12')
+			.setDesc('e.g. 2026-Q1, 2026-FY, sprint-12')
 			.addText((text) => {
 				text.setPlaceholder('2026-Q1')
 					.setValue(this.cycleCustom)
@@ -157,8 +157,8 @@ export class ObjectiveModal extends Modal {
 
 		// ── Status ─────────────────────────────────────────────────
 		new Setting(contentEl).setName('Status').addDropdown((dd) => {
-			dd.addOption('not-started', 'Not Started');
-			dd.addOption('in-progress', 'In Progress');
+			dd.addOption('not-started', 'Not started');
+			dd.addOption('in-progress', 'In progress');
 			dd.addOption('complete', 'Complete');
 			dd.addOption('cancelled', 'Cancelled');
 			dd.setValue(this.status);
@@ -172,7 +172,7 @@ export class ObjectiveModal extends Modal {
 		actionRow.createEl('button', {
 			text: this.existing ? 'Save changes' : 'Create objective',
 			cls: 'mod-cta',
-		}).addEventListener('click', () => this.save());
+		}).addEventListener('click', () => { void this.save(); });
 	}
 
 	private onCycleTypeChange() {
@@ -180,9 +180,9 @@ export class ObjectiveModal extends Modal {
 		const isCustom = type === 'custom';
 		const isYear = type === 'year';
 
-		if (this.yearRowEl) isCustom ? this.yearRowEl.hide() : this.yearRowEl.show();
-		if (this.periodRowEl) (isCustom || isYear) ? this.periodRowEl.hide() : this.periodRowEl.show();
-		if (this.customRowEl) isCustom ? this.customRowEl.show() : this.customRowEl.hide();
+		if (this.yearRowEl) { if (isCustom) this.yearRowEl.hide(); else this.yearRowEl.show(); }
+		if (this.periodRowEl) { if (isCustom || isYear) this.periodRowEl.hide(); else this.periodRowEl.show(); }
+		if (this.customRowEl) { if (isCustom) this.customRowEl.show(); else this.customRowEl.hide(); }
 
 		if (!isCustom && !isYear && this.periodSelectEl) {
 			this.populatePeriodOptions(type);

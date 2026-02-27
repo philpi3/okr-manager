@@ -24,10 +24,10 @@ export default class OkrPlugin extends Plugin {
 		);
 
 		// Ribbon icons
-		this.addRibbonIcon('layout-grid', 'OKR Overview', () => {
+		this.addRibbonIcon('layout-grid', 'OKR overview', () => {
 			void this.activateOverview();
 		});
-		this.addRibbonIcon('target', 'OKR Dashboard', () => {
+		this.addRibbonIcon('target', 'OKR dashboard', () => {
 			void this.activateDashboard();
 		});
 
@@ -86,7 +86,7 @@ export default class OkrPlugin extends Plugin {
 		}
 
 		if (leaf) {
-			workspace.revealLeaf(leaf);
+			void workspace.revealLeaf(leaf);
 		}
 	}
 
@@ -98,7 +98,7 @@ export default class OkrPlugin extends Plugin {
 			leaf = workspace.getLeaf('tab');
 			await leaf.setViewState({ type: OKR_OVERVIEW_VIEW_TYPE, active: true });
 		}
-		workspace.revealLeaf(leaf);
+		void workspace.revealLeaf(leaf);
 	}
 
 	getActiveDashboardView(): OkrDashboardView | null {
@@ -121,8 +121,6 @@ class OkrSettingsTab extends PluginSettingTab {
 	display(): void {
 		const { containerEl } = this;
 		containerEl.empty();
-
-		new Setting(containerEl).setName('OKR manager settings').setHeading();
 
 		new Setting(containerEl)
 			.setName('OKR folder')

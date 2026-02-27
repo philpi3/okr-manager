@@ -75,7 +75,7 @@ export class CheckInModal extends Modal {
 			text: 'Log check-in',
 			cls: 'mod-cta',
 		});
-		saveBtn.addEventListener('click', () => this.save());
+		saveBtn.addEventListener('click', () => { void this.save(); });
 	}
 
 	private async save() {

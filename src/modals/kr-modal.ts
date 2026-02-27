@@ -89,8 +89,8 @@ export class KrModal extends Modal {
 
 		// Status
 		new Setting(contentEl).setName('Status').addDropdown((dd) => {
-			dd.addOption('not-started', 'Not Started');
-			dd.addOption('in-progress', 'In Progress');
+			dd.addOption('not-started', 'Not started');
+			dd.addOption('in-progress', 'In progress');
 			dd.addOption('complete', 'Complete');
 			dd.addOption('cancelled', 'Cancelled');
 			dd.setValue(this.status);
@@ -107,7 +107,7 @@ export class KrModal extends Modal {
 			text: this.existing ? 'Save changes' : 'Add key result',
 			cls: 'mod-cta',
 		});
-		saveBtn.addEventListener('click', () => this.save());
+		saveBtn.addEventListener('click', () => { void this.save(); });
 	}
 
 	private async save() {
