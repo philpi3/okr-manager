@@ -30,7 +30,7 @@ export class CheckInModal extends Modal {
 		const { contentEl } = this;
 		contentEl.empty();
 
-		contentEl.createEl('h2', { text: 'Log Check-in' });
+		new Setting(contentEl).setName('Log check-in').setHeading();
 
 		// KR summary card
 		const info = contentEl.createDiv({ cls: 'okr-checkin-kr-info' });
@@ -72,7 +72,7 @@ export class CheckInModal extends Modal {
 		cancelBtn.addEventListener('click', () => this.close());
 
 		const saveBtn = actionRow.createEl('button', {
-			text: 'Log Check-in',
+			text: 'Log check-in',
 			cls: 'mod-cta',
 		});
 		saveBtn.addEventListener('click', () => this.save());
@@ -103,7 +103,7 @@ export class CheckInModal extends Modal {
 			this.onSave?.();
 			this.close();
 		} catch (e) {
-			new Notice(`Error logging check-in: ${e}`);
+			new Notice(`Error logging check-in: ${e instanceof Error ? e.message : String(e)}`);
 		}
 	}
 

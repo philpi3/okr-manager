@@ -38,13 +38,14 @@ export class OkrOverviewView extends ItemView {
 		await this.render();
 	}
 
-	async onClose() {
+	onClose(): Promise<void> {
 		if (this.refreshTimeout !== null) clearTimeout(this.refreshTimeout);
+		return Promise.resolve();
 	}
 
 	private scheduleRefresh() {
 		if (this.refreshTimeout !== null) clearTimeout(this.refreshTimeout);
-		this.refreshTimeout = setTimeout(() => { this.render(); this.refreshTimeout = null; }, 300);
+		this.refreshTimeout = setTimeout(() => { void this.render(); this.refreshTimeout = null; }, 300);
 	}
 
 	async render() {
@@ -60,9 +61,9 @@ export class OkrOverviewView extends ItemView {
 		// ── Toolbar ────────────────────────────────────────────────
 		const toolbar = root.createDiv({ cls: 'okr-ov-toolbar' });
 
-		toolbar.createEl('button', { text: '+ New Objective', cls: 'mod-cta' })
+		toolbar.createEl('button', { text: '+ New objective', cls: 'mod-cta' })
 			.addEventListener('click', () => {
-				new ObjectiveModal(this.app, this.plugin, undefined, () => this.render()).open();
+				new ObjectiveModal(this.app, this.plugin, undefined, () => { void this.render(); }).open();
 			});
 
 		toolbar.createDiv({ cls: 'okr-ov-toolbar-spacer' });
@@ -106,7 +107,7 @@ export class OkrOverviewView extends ItemView {
 			if (this.groupBy === value) return;
 			this.groupBy = value;
 			this.cycleTypeFilter = 'all'; // reset filter when switching group
-			this.render();
+			void this.render();
 		});
 	}
 
@@ -131,7 +132,7 @@ export class OkrOverviewView extends ItemView {
 			pill.addEventListener('click', () => {
 				if (this.cycleTypeFilter === value) return;
 				this.cycleTypeFilter = value;
-				this.render();
+				void this.render();
 			});
 		}
 	}
@@ -264,11 +265,11 @@ export class OkrOverviewView extends ItemView {
 		const actions = card.createDiv({ cls: 'okr-ov-card-actions' });
 
 		actions.createEl('button', { text: 'Open', cls: 'okr-btn' })
-			.addEventListener('click', () => this.app.workspace.getLeaf('tab').openFile(obj.file));
+			.addEventListener('click', () => { void this.app.workspace.getLeaf('tab').openFile(obj.file); });
 
 		actions.createEl('button', { text: 'Edit', cls: 'okr-btn' })
 			.addEventListener('click', () => {
-				new ObjectiveModal(this.app, this.plugin, obj, () => this.render()).open();
+				new ObjectiveModal(this.app, this.plugin, obj, () => { void this.render(); }).open();
 			});
 
 		if (obj.key_results.length > 0) {
@@ -277,13 +278,13 @@ export class OkrOverviewView extends ItemView {
 					e.stopPropagation();
 					const kr = obj.key_results.find((k) => k.status !== 'complete')
 						?? obj.key_results[obj.key_results.length - 1];
-					new CheckInModal(this.app, this.plugin, obj.file, kr, () => this.render()).open();
+					new CheckInModal(this.app, this.plugin, obj.file, kr, () => { void this.render(); }).open();
 				});
 		}
 
 		actions.createEl('button', { text: '+ KR', cls: 'okr-btn' })
 			.addEventListener('click', () => {
-				new KrModal(this.app, this.plugin, obj.file, undefined, () => this.render()).open();
+				new KrModal(this.app, this.plugin, obj.file, undefined, () => { void this.render(); }).open();
 			});
 	}
 }

@@ -40,9 +40,7 @@ export class KrModal extends Modal {
 		const { contentEl } = this;
 		contentEl.empty();
 
-		contentEl.createEl('h2', {
-			text: this.existing ? 'Edit Key Result' : 'Add Key Result',
-		});
+		new Setting(contentEl).setName(this.existing ? 'Edit key result' : 'Add key result').setHeading();
 
 		// Title
 		new Setting(contentEl)
@@ -106,7 +104,7 @@ export class KrModal extends Modal {
 		cancelBtn.addEventListener('click', () => this.close());
 
 		const saveBtn = actionRow.createEl('button', {
-			text: this.existing ? 'Save Changes' : 'Add Key Result',
+			text: this.existing ? 'Save changes' : 'Add key result',
 			cls: 'mod-cta',
 		});
 		saveBtn.addEventListener('click', () => this.save());
@@ -148,7 +146,7 @@ export class KrModal extends Modal {
 			this.onSave?.();
 			this.close();
 		} catch (e) {
-			new Notice(`Error saving key result: ${e}`);
+			new Notice(`Error saving key result: ${e instanceof Error ? e.message : String(e)}`);
 		}
 	}
 

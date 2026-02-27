@@ -62,7 +62,7 @@ export class ObjectiveModal extends Modal {
 	onOpen() {
 		const { contentEl } = this;
 		contentEl.empty();
-		contentEl.createEl('h2', { text: this.existing ? 'Edit Objective' : 'New Objective' });
+		new Setting(contentEl).setName(this.existing ? 'Edit objective' : 'New objective').setHeading();
 
 		// ── Title ──────────────────────────────────────────────────
 		new Setting(contentEl)
@@ -76,7 +76,7 @@ export class ObjectiveModal extends Modal {
 			});
 
 		// ── Cycle section ──────────────────────────────────────────
-		contentEl.createEl('h3', { text: 'Cycle', cls: 'okr-modal-section-header' });
+		new Setting(contentEl).setName('Cycle').setHeading();
 
 		// Type dropdown
 		new Setting(contentEl)
@@ -170,7 +170,7 @@ export class ObjectiveModal extends Modal {
 		actionRow.createEl('button', { text: 'Cancel' })
 			.addEventListener('click', () => this.close());
 		actionRow.createEl('button', {
-			text: this.existing ? 'Save Changes' : 'Create Objective',
+			text: this.existing ? 'Save changes' : 'Create objective',
 			cls: 'mod-cta',
 		}).addEventListener('click', () => this.save());
 	}
@@ -252,7 +252,7 @@ export class ObjectiveModal extends Modal {
 			this.onSave?.();
 			this.close();
 		} catch (e) {
-			new Notice(`Error saving objective: ${e}`);
+			new Notice(`Error saving objective: ${e instanceof Error ? e.message : String(e)}`);
 		}
 	}
 

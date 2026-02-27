@@ -25,33 +25,33 @@ export default class OkrPlugin extends Plugin {
 
 		// Ribbon icons
 		this.addRibbonIcon('layout-grid', 'OKR Overview', () => {
-			this.activateOverview();
+			void this.activateOverview();
 		});
 		this.addRibbonIcon('target', 'OKR Dashboard', () => {
-			this.activateDashboard();
+			void this.activateDashboard();
 		});
 
 		// Commands
 		this.addCommand({
 			id: 'open-overview',
-			name: 'Open OKR Overview',
-			callback: () => this.activateOverview(),
+			name: 'Open OKR overview',
+			callback: () => { void this.activateOverview(); },
 		});
 
 		this.addCommand({
 			id: 'open-dashboard',
-			name: 'Open OKR Dashboard (sidebar)',
-			callback: () => this.activateDashboard(),
+			name: 'Open OKR dashboard (sidebar)',
+			callback: () => { void this.activateDashboard(); },
 		});
 
 		this.addCommand({
 			id: 'new-objective',
-			name: 'New Objective',
+			name: 'New objective',
 			callback: () => {
 				const view = this.getActiveDashboardView();
-				new ObjectiveModal(this.app, this, undefined, () =>
-					view?.render()
-				).open();
+				new ObjectiveModal(this.app, this, undefined, () => {
+					void view?.render();
+				}).open();
 			},
 		});
 
@@ -122,7 +122,7 @@ class OkrSettingsTab extends PluginSettingTab {
 		const { containerEl } = this;
 		containerEl.empty();
 
-		containerEl.createEl('h2', { text: 'OKR Manager Settings' });
+		new Setting(containerEl).setName('OKR manager settings').setHeading();
 
 		new Setting(containerEl)
 			.setName('OKR folder')

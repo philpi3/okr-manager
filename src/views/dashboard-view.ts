@@ -52,10 +52,11 @@ export class OkrDashboardView extends ItemView {
 		await this.render();
 	}
 
-	async onClose() {
+	onClose(): Promise<void> {
 		if (this.refreshTimeout !== null) {
 			clearTimeout(this.refreshTimeout);
 		}
+		return Promise.resolve();
 	}
 
 	private scheduleRefresh() {
@@ -63,7 +64,7 @@ export class OkrDashboardView extends ItemView {
 			clearTimeout(this.refreshTimeout);
 		}
 		this.refreshTimeout = setTimeout(() => {
-			this.render();
+			void this.render();
 			this.refreshTimeout = null;
 		}, 300);
 	}
@@ -78,13 +79,13 @@ export class OkrDashboardView extends ItemView {
 		header.createEl('h2', { text: 'OKR Dashboard' });
 		const headerActions = header.createDiv({ cls: 'okr-header-actions' });
 		const newObjBtn = headerActions.createEl('button', {
-			text: '+ New Objective',
+			text: '+ New objective',
 			cls: 'mod-cta',
 		});
 		newObjBtn.addEventListener('click', () => {
-			new ObjectiveModal(this.app, this.plugin, undefined, () =>
-				this.render()
-			).open();
+			new ObjectiveModal(this.app, this.plugin, undefined, () => {
+				void this.render();
+			}).open();
 		});
 
 		// Load objectives
@@ -96,7 +97,7 @@ export class OkrDashboardView extends ItemView {
 				text: 'No OKRs yet. Create your first objective to get started!',
 			});
 			const emptyBtn = empty.createEl('button', {
-				text: '+ New Objective',
+				text: '+ New objective',
 				cls: 'mod-cta',
 			});
 			emptyBtn.addEventListener('click', () => {
@@ -145,9 +146,9 @@ export class OkrDashboardView extends ItemView {
 		const actions = cardHeader.createDiv({ cls: 'okr-objective-actions' });
 		const editBtn = actions.createEl('button', { text: 'Edit', cls: 'okr-btn' });
 		editBtn.addEventListener('click', () => {
-			new ObjectiveModal(this.app, this.plugin, obj, () =>
-				this.render()
-			).open();
+			new ObjectiveModal(this.app, this.plugin, obj, () => {
+				void this.render();
+			}).open();
 		});
 
 		// Owner / meta
@@ -159,7 +160,7 @@ export class OkrDashboardView extends ItemView {
 		}
 
 		// Overall progress bar
-		this.renderProgressBar(card, obj.progress, 'Overall Progress');
+		this.renderProgressBar(card, obj.progress, 'Overall progress');
 
 		// KR list
 		if (obj.key_results.length > 0) {
@@ -171,13 +172,13 @@ export class OkrDashboardView extends ItemView {
 
 		// Add KR button
 		const addKrBtn = card.createEl('button', {
-			text: '+ Add Key Result',
+			text: '+ Add key result',
 			cls: 'okr-add-kr',
 		});
 		addKrBtn.addEventListener('click', () => {
-			new KrModal(this.app, this.plugin, obj.file, undefined, () =>
-				this.render()
-			).open();
+			new KrModal(this.app, this.plugin, obj.file, undefined, () => {
+				void this.render();
+			}).open();
 		});
 	}
 
@@ -199,9 +200,9 @@ export class OkrDashboardView extends ItemView {
 			cls: 'okr-btn mod-cta',
 		});
 		checkinBtn.addEventListener('click', () => {
-			new CheckInModal(this.app, this.plugin, obj.file, kr, () =>
-				this.render()
-			).open();
+			new CheckInModal(this.app, this.plugin, obj.file, kr, () => {
+				void this.render();
+			}).open();
 		});
 
 		const editKrBtn = krActions.createEl('button', {
@@ -209,9 +210,9 @@ export class OkrDashboardView extends ItemView {
 			cls: 'okr-btn',
 		});
 		editKrBtn.addEventListener('click', () => {
-			new KrModal(this.app, this.plugin, obj.file, kr, () =>
-				this.render()
-			).open();
+			new KrModal(this.app, this.plugin, obj.file, kr, () => {
+				void this.render();
+			}).open();
 		});
 
 		this.renderProgressBar(row, kr.progress, kr.status.replace(/-/g, ' '));
